@@ -27,16 +27,21 @@
         bottom: 0;
     }
     .nav {
-        margin: 10mm 0;
-        text-align: center;
+        display: flex;
+        justify-content: space-between;
+        margin: 10px 0;
     }
     .nav button {
         background-color: #f1f1f1;
         border: none;
-        padding: 10px 20px;
+        padding: 20px;
         cursor: pointer;
-        font-size: 16px;
-        margin: 0 5px;
+        font-size: 20px;
+        width: 32%; /* Adjusted width for three buttons in a row */
+    }
+    .nav button:first-child {
+        background-color: #4CAF50; /* Green color for the first button */
+        color: white;
     }
     .nav button:hover {
         background-color: #ddd;
@@ -60,10 +65,31 @@
         padding: 10px;
         font-size: 18px;
         margin-bottom: 10px;
+        width: 80%;
     }
     #password-prompt button {
         padding: 10px;
         font-size: 18px;
+        width: 80%;
+    }
+    .dominant-buttons button {
+        display: block;
+        width: 100%; /* Make buttons full-width */
+        padding: 10px;
+        margin: 5px 0;
+        background-color: #4CAF50; /* Green color */
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 18px;
+    }
+    .dominant-buttons button:hover {
+        background-color: #45a049; /* Slightly darker green on hover */
+    }
+    .thank-you-image {
+        margin-top: 20px;
+        width: 100%;
+        height: auto;
     }
 </style>
 </head>
@@ -82,7 +108,7 @@
 <div class="content" id="message">
     <img src="home.png" alt="home" width="100%">
 </div>
-
+ 
 <div class="footer">
     <div class="marquee">
         <img src="whats.png" alt="Contact Icon" class="contact-icon" width="30px">
@@ -93,6 +119,10 @@
 <div id="password-prompt" class="hidden password-container">
     <input type="password" id="password" placeholder="أدخل كلمة المرور">
     <button onclick="checkPassword()">أظهر لي روابط التحميل والشرح</button>
+    <div id="dominant-buttons" class="dominant-buttons hidden">
+        <!-- سيتم إنشاء الأزرار هنا بواسطة JavaScript -->
+    </div>
+    <img src="OT133T1.png" alt="Thank You Image" class="hidden thank-you-image" id="thank-you-image">
     <p id="error-message" class="hidden">كلمة السر خطأ أو منتهية الصلاحية .. تواصل مع الشركة عبر الواتساب للتفاصيل 01205557825</p>
 </div>
 
@@ -102,10 +132,11 @@
         'https://youtu.be/7k_pY1Yx5Dg',
         'https://drive.google.com/file/d/1O58A9BZ_06VopAfO3ZbnSovbKXAcNMxM/view?usp=drive_link',
         'https://youtu.be/RbX3l_okVk4',
-        'https://drive.google.com/file/d/1NxiSTlymgCl4CTw-A-8-6V_V-LKcvCNd/view?usp=drive_link'
+        'https://drive.google.com/file/d/1NxiSTlymgCl4CTw-A-8-6V_V-LKcvCNd/view?usp=drive_link',
+        'https://www.example.com/new-link' // رابط جديد
     ];
 
-    var buttonNames = ['تواصل واتساب', 'شرح تفعيل برنامج واتساب سيندر', 'تحميل برنامج واتساب سيندر', 'The Dominant شرح برنامج', 'The Dominant تحميل برنامج'];
+    var buttonNames = ['تواصل واتساب', 'شرح تفعيل برنامج واتساب سيندر', 'تحميل برنامج واتساب سيندر', 'The Dominant شرح برنامج', 'The Dominant تحميل برنامج', 'زر جديد']; // اسم جديد للزر
 
     function showPasswordPrompt() {
         document.getElementById('password-prompt').classList.remove('hidden');
@@ -115,14 +146,13 @@
     function checkPassword() {
         var password = document.getElementById('password').value;
         var errorMessage = document.getElementById('error-message');
-        var messageContainer = document.getElementById('message');
-        var dominantButtons = document.createElement('div');
+        var dominantButtons = document.getElementById('dominant-buttons');
+        var thankYouImage = document.getElementById('thank-you-image');
 
-        if (password === '1992') { // استبدل 'yourPassword' بكلمة المرور الصحيحة
+        if (password === '1992') {
             errorMessage.classList.add('hidden');
-            document.getElementById('password-prompt').classList.add('hidden');
-            messageContainer.classList.remove('hidden');
-            messageContainer.innerText = 'هنا يمكنك تحميل برامج ذا دومينانت وبرنامج واتساب سيندر وشرحهما';
+            dominantButtons.classList.remove('hidden');
+            dominantButtons.innerHTML = ''; // مسح الأزرار السابقة إن وجدت
 
             buttonNames.forEach(function(name, index) {
                 var button = document.createElement('button');
@@ -133,9 +163,11 @@
                 dominantButtons.appendChild(button);
             });
 
-            messageContainer.appendChild(dominantButtons);
+            thankYouImage.classList.remove('hidden');
         } else {
             errorMessage.classList.remove('hidden');
+            dominantButtons.classList.add('hidden');
+            thankYouImage.classList.add('hidden');
         }
     }
 
