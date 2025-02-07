@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>YAFA</title>
+<link rel="icon" href="لوجو-يافا-ايقون.ico" type="image/x-icon">
+<style>
+    body {
+        background-color: #f2e5bf;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    .header {
+        background-color: #257180;
+        color: white;
+        padding: 10px;
+        text-align: center;
+    }
+    .footer {
+        background-color: #fd8b51;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+    }
+    .nav {
+        margin: 10mm 0;
+        text-align: center;
+    }
+    .nav button {
+        background-color: #f1f1f1;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 16px;
+        margin: 0 5px;
+    }
+    .nav button:hover {
+        background-color: #ddd;
+    }
+    .content {
+        text-align: center;
+        font-size: 24px;
+        margin: 20px;
+    }
+    .hidden {
+        display: none;
+    }
+    .password-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 20px;
+    }
+    #password {
+        padding: 10px;
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+    #password-prompt button {
+        padding: 10px;
+        font-size: 18px;
+    }
+</style>
+</head>
+<body>
+
+<div class="header">
+    <img src="logo-yafa.png" alt="Logo" width="470" height="70">
+</div>
+
+<div class="nav">
+    <button onclick="showPasswordPrompt()">The Dominant خاص ببرنامج</button>
+    <button onclick="showMessage2()">خاص ببرنامج الحسابات</button>
+    <button onclick="showMessage3()">خاص ببرنامج إدارة الحضانات والأكاديميات</button>
+</div>
+
+<div class="content" id="message">
+    <img src="home.png" alt="home" width="100%">
+</div>
+
+<div class="footer">
+    <div class="marquee">
+        <img src="whats.png" alt="Contact Icon" class="contact-icon" width="30px">
+        للتواصل 01205557825
+    </div>
+</div>
+
+<div id="password-prompt" class="hidden password-container">
+    <input type="password" id="password" placeholder="أدخل كلمة المرور">
+    <button onclick="checkPassword()">أظهر لي روابط التحميل والشرح</button>
+    <p id="error-message" class="hidden">كلمة السر خطأ أو منتهية الصلاحية .. تواصل مع الشركة عبر الواتساب للتفاصيل 01205557825</p>
+</div>
+
+<script>
+    var links = [
+        'https://api.whatsapp.com/send/?phone=201205557825&text&type=phone_number&app_absent=0',
+        'https://youtu.be/7k_pY1Yx5Dg',
+        'https://drive.google.com/file/d/1O58A9BZ_06VopAfO3ZbnSovbKXAcNMxM/view?usp=drive_link',
+        'https://youtu.be/RbX3l_okVk4',
+        'https://drive.google.com/file/d/1NxiSTlymgCl4CTw-A-8-6V_V-LKcvCNd/view?usp=drive_link'
+    ];
+
+    var buttonNames = ['تواصل واتساب', 'شرح تفعيل برنامج واتساب سيندر', 'تحميل برنامج واتساب سيندر', 'The Dominant شرح برنامج', 'The Dominant تحميل برنامج'];
+
+    function showPasswordPrompt() {
+        document.getElementById('password-prompt').classList.remove('hidden');
+        document.getElementById('message').classList.add('hidden');
+    }
+
+    function checkPassword() {
+        var password = document.getElementById('password').value;
+        var errorMessage = document.getElementById('error-message');
+        var messageContainer = document.getElementById('message');
+        var dominantButtons = document.createElement('div');
+
+        if (password === '1992') { // استبدل 'yourPassword' بكلمة المرور الصحيحة
+            errorMessage.classList.add('hidden');
+            document.getElementById('password-prompt').classList.add('hidden');
+            messageContainer.classList.remove('hidden');
+            messageContainer.innerText = 'هنا يمكنك تحميل برامج ذا دومينانت وبرنامج واتساب سيندر وشرحهما';
+
+            buttonNames.forEach(function(name, index) {
+                var button = document.createElement('button');
+                button.innerText = name;
+                button.onclick = function() {
+                    location.href = links[index];
+                };
+                dominantButtons.appendChild(button);
+            });
+
+            messageContainer.appendChild(dominantButtons);
+        } else {
+            errorMessage.classList.remove('hidden');
+        }
+    }
+
+    function showMessage2() {
+        document.getElementById('message').innerText = 'تحت التطوير';
+    }
+
+    function showMessage3() {
+        document.getElementById('message').innerText = 'تحت التطوير';
+    }
+</script>
+
+</body>
+</html>
