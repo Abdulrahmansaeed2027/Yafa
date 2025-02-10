@@ -72,19 +72,24 @@
         font-size: 18px;
         width: 80%;
     }
-    .dominant-buttons button {
-        display: block;
-        width: 100%; /* Make buttons full-width */
-        padding: 10px;
+    .dominant-buttons .button-container {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
         margin: 5px 0;
-        background-color: #4CAF50; /* Green color */
+    }
+    .dominant-buttons button {
+        width: auto;
+        padding: 10px;
         color: white;
         border: none;
         cursor: pointer;
         font-size: 18px;
+        margin-right: 10px;
     }
-    .dominant-buttons button:hover {
-        background-color: #45a049; /* Slightly darker green on hover */
+    .button-description {
+        font-size: 14px;
+        color: #555;
     }
     .thank-you-image {
         margin-top: 20px;
@@ -133,10 +138,17 @@
         'https://drive.google.com/file/d/1O58A9BZ_06VopAfO3ZbnSovbKXAcNMxM/view?usp=drive_link',
         'https://youtu.be/RbX3l_okVk4',
         'https://drive.google.com/file/d/1NxiSTlymgCl4CTw-A-8-6V_V-LKcvCNd/view?usp=drive_link',
-        'https://www.example.com/new-link' // رابط جديد
+        'https://www.ultraviewer.net/en/download.html' // رابط جديد
     ];
 
-    var buttonNames = ['تواصل واتساب', 'شرح تفعيل برنامج واتساب سيندر', 'تحميل برنامج واتساب سيندر', 'The Dominant شرح برنامج', 'The Dominant تحميل برنامج', 'زر جديد']; // اسم جديد للزر
+    var buttonNames = [
+        {name: 'تواصل واتساب', color: '#53f32f', description: 'يمكنك من خلال الضغط هنا التواصل معنا واتساب للاستفسار عن أي شيء'},
+        {name: 'شرح تفعيل برنامج واتساب سيندر', color: '#c81337', description: 'الضغط هنا سيفتح لك فيديو شرح لتسطيب برنامج واتساب سيندر والجزء الثاني من الفيديو شرح لكيفية استخراج الاكسيل من برنامج الطلاب ورفعه على برنامج واتساب سيندر وبدء الإرسال'},
+        {name: '1 - تحميل برنامج واتساب سيندر', color: '#4CAF50', description: 'الضغط هنا لتحميل برنامج واتساب سيندر'},
+        {name: 'The Dominant شرح برنامج', color: '#c81337', description: 'هذا زر لشرح برنامج The Dominant'},
+        {name: 'The Dominant 2 - تحميل برنامج', color: '#4CAF50', description: 'اضغط هنا لتحميل برنامج The Dominant'},
+        {name: '3 - ultraviwer', color: '#4CAF50', description: 'اضغط هنا لتحميل برنامج Ultraviwer الذي بواسطته سيدخل معك الدعم الفني أونلاين لتفعيل البرنامج'}
+    ];
 
     function showPasswordPrompt() {
         document.getElementById('password-prompt').classList.remove('hidden');
@@ -154,13 +166,24 @@
             dominantButtons.classList.remove('hidden');
             dominantButtons.innerHTML = ''; // مسح الأزرار السابقة إن وجدت
 
-            buttonNames.forEach(function(name, index) {
+            buttonNames.forEach(function(btn, index) {
+                var buttonContainer = document.createElement('div');
+                buttonContainer.className = 'button-container';
+
                 var button = document.createElement('button');
-                button.innerText = name;
+                var description = document.createElement('div');
+
+                button.innerText = btn.name;
+                button.style.backgroundColor = btn.color;
                 button.onclick = function() {
                     location.href = links[index];
                 };
-                dominantButtons.appendChild(button);
+                description.className = 'button-description';
+                description.innerText = btn.description;
+
+                buttonContainer.appendChild(button);
+                buttonContainer.appendChild(description);
+                dominantButtons.appendChild(buttonContainer);
             });
 
             thankYouImage.classList.remove('hidden');
