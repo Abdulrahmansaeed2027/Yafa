@@ -135,19 +135,15 @@
     var links = [
         'https://api.whatsapp.com/send/?phone=201205557825&text&type=phone_number&app_absent=0',
         'https://youtu.be/7k_pY1Yx5Dg',
-        'https://drive.google.com/file/d/1O58A9BZ_06VopAfO3ZbnSovbKXAcNMxM/view?usp=drive_link',
-        'https://youtu.be/RbX3l_okVk4',
-        'https://drive.google.com/file/d/1NxiSTlymgCl4CTw-A-8-6V_V-LKcvCNd/view?usp=drive_link',
-        'https://www.ultraviewer.net/en/download.html' // رابط جديد
+        'https://youtu.be/7k_pY1Yx5Dg',
+        'https://drive.google.com/file/d/1mCW5DqvpLquvWvd_VMfwZW9Mm4eiREop/view?usp=sharing' // رابط جديد
     ];
 
     var buttonNames = [
         {name: 'تواصل واتساب', color: '#53f32f', description: 'يمكنك من خلال الضغط هنا التواصل معنا واتساب للاستفسار عن أي شيء'},
         {name: 'شرح تفعيل برنامج واتساب سيندر', color: '#c81337', description: 'الضغط هنا سيفتح لك فيديو شرح لتسطيب برنامج واتساب سيندر والجزء الثاني من الفيديو شرح لكيفية استخراج الاكسيل من برنامج الطلاب ورفعه على برنامج واتساب سيندر وبدء الإرسال'},
-        {name: '1 - تحميل برنامج واتساب سيندر', color: '#4CAF50', description: 'الضغط هنا لتحميل برنامج واتساب سيندر'},
-        {name: 'The Dominant شرح برنامج', color: '#c81337', description: 'هذا زر لشرح برنامج The Dominant'},
-        {name: 'The Dominant 2 - تحميل برنامج', color: '#4CAF50', description: 'اضغط هنا لتحميل برنامج The Dominant'},
-        {name: '3 - ultraviwer', color: '#4CAF50', description: 'اضغط هنا لتحميل برنامج Ultraviwer الذي بواسطته سيدخل معك الدعم الفني أونلاين لتفعيل البرنامج'}
+        {name: 'شرح برنامج The Dominant', color: '#c81337', description: 'هنا تجد شرح البرنامج بالكامل'},
+        {name: 'تحميل البرامج', color: '#4CAF50', description: 'قم بتحميل الثلاث برامج من هنا في رابط واحد وستجد معه صورة بها كيفية التسطيب'}
     ];
 
     function showPasswordPrompt() {
@@ -161,7 +157,7 @@
         var dominantButtons = document.getElementById('dominant-buttons');
         var thankYouImage = document.getElementById('thank-you-image');
 
-        if (password === '1992') {
+        if (password === '2002') {
             errorMessage.classList.add('hidden');
             dominantButtons.classList.remove('hidden');
             dominantButtons.innerHTML = ''; // مسح الأزرار السابقة إن وجدت
