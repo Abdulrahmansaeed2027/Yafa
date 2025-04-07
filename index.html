@@ -65,8 +65,8 @@
     }
 
     .nav button:first-child {
-      background-color: #4CAF50;
-      color: white;
+      background-color: #ffffff;
+      color: rgb(0, 0, 0);
     }
 
     .nav button:hover {
@@ -75,7 +75,8 @@
 
     .hero {
       background: linear-gradient(90deg, #257180, #4CAF50);
-      padding: 40px 20px;
+      padding: 70px 20px;
+      top: 30px;
       color: white;
       text-align: center;
       animation: fadeIn 1.5s ease-in-out;
@@ -87,19 +88,19 @@
     }
 
     .hero-content {
-      flex: 2;
+      flex: 1;
       text-align: right;
       padding-right: 20px;
     }
 
     .clients-slider {
       flex: 1;
-      height: 180px;
+      height: 330px;
       position: relative;
       overflow: hidden;
       border-radius: 10px;
       background-color: rgba(255, 255, 255, 0.1);
-      padding: 10px;
+      padding: 1px;
       min-width: 250px;
     }
 
@@ -137,8 +138,8 @@
     }
 
     .client-image {
-      width: 100px;
-      height: 130px;
+      width: 200px;
+      height: 250px;
       object-fit: cover;
       margin-left: 15px;
       border: 2px solid rgba(255, 255, 255, 0.5);
@@ -172,11 +173,13 @@
     .updates {
       padding: 20px;
       text-align: center;
+      
     }
 
     .updates h2 {
       color: #257180;
       margin-bottom: 10px;
+      
     }
 
     .tabs {
@@ -354,8 +357,11 @@
 
 <div class="hero" id="dynamic-hero">
   <div class="hero-content">
-    <h1>أهلاً بك في Yafa</h1>
+    <h1>أهلاً بك في YAFA</h1>
     <p>نظام متكامل لإدارة الحضانات والدروس الخصوصية بكل سهولة واحترافية</p>
+    <h2>ـــــــــــــــــــــــــــــــــــــــ</h2>
+    <h2>📝 التحديثات الجديدة</h2>
+  <p>إمكانية إرسال رسائل واتساب لأولياء الأمور بالحضور والغياب والدرجات</p>
   </div>
   <div class="clients-slider" id="clients-slider">
     <div class="clients-title">من عملائنا الكرام</div>
@@ -364,8 +370,8 @@
 </div>
 
 <div class="updates">
-  <h2>📝 التحديثات الجديدة</h2>
-  <p>إمكانية إرسال رسائل واتساب لأولياء الأمور بالحضور والغياب والدرجات</p>
+  
+  <p></p>
 </div>
 
 <div class="tabs">
@@ -423,7 +429,7 @@
 </div>
 
 <script>
-  let currentPassword = "5050";
+  let currentPassword = "42025";
   let developerPassword = "0100";
 
   // بيانات العملاء (يمكن استبدالها ببيانات حقيقية)
