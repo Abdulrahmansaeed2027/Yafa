@@ -1,202 +1,426 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<title>YAFA</title>
-<link rel="icon" href="لوجو-يافا-ايقون.ico" type="image/x-icon">
-<style>
+  <meta charset="UTF-8">
+  <title>YAFA</title>
+  <link rel="icon" href="لوجو-يافا-ايقون.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+  <style>
     body {
-        background-color: #f2e5bf;
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
+      background-color: #f2e5bf;
+      font-family: 'Cairo', sans-serif;
+      margin: 0;
+      padding: 0;
     }
+
     .header {
-        background-color: #257180;
-        color: white;
-        padding: 10px;
-        text-align: center;
+      background-color: #257180;
+      color: white;
+      padding: 10px;
+      text-align: center;
     }
+
     .footer {
-        background-color: #fd8b51;
-        color: white;
-        text-align: center;
-        padding: 10px;
-        position: fixed;
-        width: 100%;
-        bottom: 0;
+      background-color: #fd8b51;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
     }
+
     .nav {
-        display: flex;
-        justify-content: space-between;
-        margin: 10px 0;
+      display: flex;
+      justify-content: space-between;
+      margin: 10px;
     }
+
     .nav button {
-        background-color: #f1f1f1;
-        border: none;
-        padding: 20px;
-        cursor: pointer;
-        font-size: 20px;
-        width: 32%; /* Adjusted width for three buttons in a row */
+      background-color: #f1f1f1;
+      border: none;
+      padding: 20px;
+      cursor: pointer;
+      font-size: 20px;
+      width: 32%;
     }
+
     .nav button:first-child {
-        background-color: #4CAF50; /* Green color for the first button */
-        color: white;
+      background-color: #4CAF50;
+      color: white;
     }
+
     .nav button:hover {
-        background-color: #ddd;
+      background-color: #ddd;
     }
-    .content {
-        text-align: center;
-        font-size: 24px;
-        margin: 20px;
+
+    .hero {
+      background: linear-gradient(90deg, #257180, #4CAF50);
+      padding: 60px 20px;
+      color: white;
+      text-align: center;
+      animation: fadeIn 1.5s ease-in-out;
     }
-    .hidden {
-        display: none;
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
     }
-    .password-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        margin-top: 20px;
+
+    .hero p {
+      font-size: 1.2rem;
     }
-    #password {
-        padding: 10px;
-        font-size: 18px;
-        margin-bottom: 10px;
-        width: 80%;
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-    #password-prompt button {
-        padding: 10px;
-        font-size: 18px;
-        width: 80%;
+
+    .updates {
+      padding: 20px;
+      text-align: center;
     }
-    .dominant-buttons .button-container {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        margin: 5px 0;
+
+    .updates h2 {
+      color: #257180;
+      margin-bottom: 10px;
     }
-    .dominant-buttons button {
-        width: auto;
-        padding: 10px;
-        color: white;
-        border: none;
-        cursor: pointer;
-        font-size: 18px;
-        margin-right: 10px;
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
     }
-    .button-description {
-        font-size: 14px;
-        color: #555;
+
+    .tab {
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      padding: 20px;
+      width: 300px;
+      text-align: center;
+      transition: transform 0.3s ease;
     }
-    .thank-you-image {
-        margin-top: 20px;
+
+    .tab:hover {
+      transform: translateY(-5px);
+    }
+
+    .tab h3 {
+      color: #257180;
+    }
+
+    .tab p {
+      margin: 10px 0;
+    }
+
+    .tab button {
+      background-color: #257180;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .tab button:hover {
+      transform: scale(1.1);
+      background-color: #4CAF50;
+    }
+
+    .download-link {
+      display: flex;
+      justify-content: space-between;
+      background-color: #fff;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .download-link:hover {
+      transform: scale(1.05);
+      background-color: #f9f9f9;
+    }
+
+    .download-link p {
+      color: #257180;
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .popup-content {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .popup-content h4 {
+      color: #257180;
+      margin-bottom: 15px;
+    }
+
+    .popup-content p {
+      line-height: 1.8;
+    }
+
+    .close-btn {
+      margin-top: 20px;
+      background-color: #c0392b;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .settings-popup {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .settings-popup-content {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .settings-popup input {
+      padding: 10px;
+      margin-top: 20px;
+      width: 80%;
+      font-size: 18px;
+    }
+
+    .settings-popup button {
+      background-color: #257180;
+      color: white;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .nav button {
         width: 100%;
-        height: auto;
+        margin-bottom: 10px;
+      }
+
+      .tabs {
+        flex-direction: column;
+        align-items: center;
+      }
     }
-</style>
+  </style>
 </head>
 <body>
 
 <div class="header">
-    <img src="logo-yafa.png" alt="Logo" width="470" height="70">
+  <img src="logo-yafa.png" alt="Logo" width="470" height="70">
 </div>
 
 <div class="nav">
-    <button onclick="showPasswordPrompt()">The Dominant خاص ببرنامج</button>
-    <button onclick="showMessage2()">خاص ببرنامج الحسابات</button>
-    <button onclick="showMessage3()">خاص ببرنامج إدارة الحضانات والأكاديميات</button>
+  <button onclick="showPasswordPrompt()">The Dominant خاص ببرنامج</button>
+  <button onclick="showMessage2()">خدمات الموقع</button>
+  <button onclick="showMessage3()">خاص ببرنامج إدارة الحضانات والأكاديميات</button>
+  <button onclick="showDeveloperPasswordPrompt()">إعدادات المطور</button>
 </div>
 
-<div class="content" id="message">
-    <img src="home.png" alt="home" width="100%">
+<div class="hero" id="dynamic-hero">
+  <h1>أهلاً بك في Yafa</h1>
+  <p>نظام متكامل لإدارة الحضانات والدروس الخصوصية بكل سهولة واحترافية</p>
 </div>
- 
+
+<div class="updates">
+  <h2>📝 التحديثات الجديدة</h2>
+  <p>إمكانية إرسال رسائل واتساب لأولياء الأمور بالحضور والغياب والدرجات</p>
+</div>
+
+<div class="tabs">
+  <div class="tab">
+    <h3>الخطة السنوية</h3>
+    <p>490 ج - برنامج إدارة الدروس الخصوصية</p>
+    <button onclick="openPopup()">كيفية الاشتراك</button>
+  </div>
+  <div class="tab">
+    <h3>شراء كامل</h3>
+    <p>1500 ج - مفعل مدى الحياة</p>
+    <button onclick="openPopup()">كيفية الاشتراك</button>
+  </div>
+  <div class="tab">
+    <h3>شراء كامل + خدمات</h3>
+    <p>1600 ج - مدى الحياة + خدمات الموقع</p>
+    <button onclick="openPopup()">كيفية الاشتراك</button>
+  </div>
+</div>
+
+
+
+<!-- Popup -->
+<div class="popup" id="popup">
+  <div class="popup-content">
+    <h4>كيفية الدفع والاشتراك</h4>
+    <p>
+      يتم تحويل قيمة الاشتراك على فودافون كاش:<br />
+      <strong>01009311365</strong><br />
+      ثم التواصل مع الدعم الفني:<br />
+      <strong>01205557825</strong><br />
+      ليتم إنشاء باسورد خاص بك وتفعيل البرنامج.
+    </p>
+    <button class="close-btn" onclick="closePopup()">إغلاق</button>
+  </div>
+</div>
+
+<!-- Developer Password Prompt -->
+<div class="settings-popup" id="developer-password-popup">
+  <div class="settings-popup-content">
+    <h4>أدخل كلمة مرور المطور</h4>
+    <input type="password" id="developer-password" placeholder="أدخل كلمة المرور">
+    <button onclick="checkDeveloperPassword()">دخول</button>
+    <button onclick="closeDeveloperPasswordPopup()">إغلاق</button>
+  </div>
+</div>
+
+<!-- Settings Popup -->
+<div class="settings-popup" id="settings-popup">
+  <div class="settings-popup-content">
+    <h4>تغيير كلمة مرور عرض روابط التحميل</h4>
+    <input type="password" id="new-password" placeholder="أدخل كلمة المرور الجديدة">
+    <button onclick="changePassword()">تغيير كلمة المرور</button>
+    <button onclick="closeSettingsPopup()">إغلاق</button>
+  </div>
+</div>
+
 <div class="footer">
-    <div class="marquee">
-        <img src="whats.png" alt="Contact Icon" class="contact-icon" width="30px">
-        للتواصل 01205557825
-    </div>
-</div>
-
-<div id="password-prompt" class="hidden password-container">
-    <input type="password" id="password" placeholder="أدخل كلمة المرور">
-    <button onclick="checkPassword()">أظهر لي روابط التحميل والشرح</button>
-    <div id="dominant-buttons" class="dominant-buttons hidden">
-        <!-- سيتم إنشاء الأزرار هنا بواسطة JavaScript -->
-    </div>
-    <img src="OT133T1.png" alt="Thank You Image" class="hidden thank-you-image" id="thank-you-image">
-    <p id="error-message" class="hidden">كلمة السر خطأ أو منتهية الصلاحية .. تواصل مع الشركة عبر الواتساب للتفاصيل 01205557825</p>
+  <img src="whats.png" alt="Contact Icon" width="30px"> للتواصل: 01205557825
 </div>
 
 <script>
-    var links = [
-        'https://api.whatsapp.com/send/?phone=201205557825&text&type=phone_number&app_absent=0',
-        'https://youtu.be/7k_pY1Yx5Dg',
-        'https://drive.google.com/file/d/1C183TaPV4A1IocbKpfgHR7bWljqrPg_E/view?usp=sharing',
-        'https://drive.google.com/file/d/1B3Ue_1KFlGPhnsP-wmYZ347LePDglGsR/view?usp=sharing' // رابط جديد
-    ];
+  let currentPassword = "5050";  // كلمة المرور الحالية لعرض روابط التحميل
+  let developerPassword = "0100";  // كلمة مرور المطور
 
-    var buttonNames = [
-        {name: 'تواصل واتساب', color: '#53f32f', description: 'يمكنك من خلال الضغط هنا التواصل معنا واتساب للاستفسار عن أي شيء'},
-        {name: 'شرح تفعيل برنامج واتساب سيندر', color: '#c81337', description: 'الضغط هنا سيفتح لك فيديو شرح لتسطيب برنامج واتساب سيندر والجزء الثاني من الفيديو شرح لكيفية استخراج الاكسيل من برنامج الطلاب ورفعه على برنامج واتساب سيندر وبدء الإرسال'},
-        {name: 'شرح برنامج The Dominant', color: '#c81337', description: 'هنا تجد شرح البرنامج بالكامل'},
-        {name: 'تحميل البرامج', color: '#4CAF50', description: 'قم بتحميل الثلاث برامج من هنا في رابط واحد وستجد معه صورة بها كيفية التسطيب'}
-    ];
+  function showPasswordPrompt() {
+    const heroSection = document.getElementById("dynamic-hero");
+    heroSection.innerHTML = `
+      <h1>كلمة المرور الخاصة بـ "The Dominant"</h1>
+      <input type="password" id="password" placeholder="أدخل كلمة المرور" style="padding: 10px; margin-top: 20px;">
+      <button onclick="checkPassword()" style="padding: 10px 20px; margin-top: 10px; background-color: #257180; color: white;">إظهار روابط التحميل</button>
+      <p id="error-message" style="color: red; display: none; margin-top: 10px;">كلمة المرور خاطئة. تواصل مع الدعم الفني 01205557825 للاشتراك والحصول على كلمة مرور.</p>
+    `;
+  }
 
-    function showPasswordPrompt() {
-        document.getElementById('password-prompt').classList.remove('hidden');
-        document.getElementById('message').classList.add('hidden');
+  function checkPassword() {
+    const passwordInput = document.getElementById("password").value;
+    const errorMessage = document.getElementById("error-message");
+
+    if (passwordInput === currentPassword) {
+      document.getElementById("dynamic-hero").innerHTML = `
+
+
+
+<!-- روابط التحميل المحسنة -->
+<h1> روابط التحميل لـ برنامج "The Dominant" الخاص بتنظيم بيانات الطلاب</h1>
+<div class="download-link" onclick="window.open('https://drive.google.com/file/d/1B3Ue_1KFlGPhnsP-wmYZ347LePDglGsR/view?usp=sharing')">
+  <p>تحميل البرامج</p>
+  <p> قم بتحميل الثلاث برامج من هنا في رابط واحد وستجد معه صورة بها كيفية التسطيب</p>
+</div>
+<div class="download-link" onclick="window.open('https://drive.google.com/file/d/1C183TaPV4A1IocbKpfgHR7bWljqrPg_E/view?usp=sharing')">
+  <p>شرح البرنامج</p>
+  <p>فيديو شرح برنامج الطلاب بكل تفاصيله</p>
+</div>
+<div class="download-link" onclick="window.open('https://youtu.be/7k_pY1Yx5Dg')">
+  <p>فيديو شرح واتساب سيندر</p>
+  <p>شرح برنامج واتساب سيندر التسطيب والإرسال</p>
+</div>
+
+
+
+
+     
+      `;
+    } else {
+      errorMessage.style.display = "block";
     }
+  }
 
-    function checkPassword() {
-        var password = document.getElementById('password').value;
-        var errorMessage = document.getElementById('error-message');
-        var dominantButtons = document.getElementById('dominant-buttons');
-        var thankYouImage = document.getElementById('thank-you-image');
+  function showMessage2() {
+    document.querySelector('.hero h1').innerText = 'خدمات الموقع قيد التطوير';
+    document.querySelector('.hero p').innerText = 'تابعنا للحصول على آخر التحديثات.';
+  }
 
-        if (password === '5050') {
-            errorMessage.classList.add('hidden');
-            dominantButtons.classList.remove('hidden');
-            dominantButtons.innerHTML = ''; // مسح الأزرار السابقة إن وجدت
+  function showMessage3() {
+    document.querySelector('.hero h1').innerText = 'إدارة الحضانات قيد التطوير';
+    document.querySelector('.hero p').innerText = 'تابعنا للحصول على آخر التحديثات.';
+  }
 
-            buttonNames.forEach(function(btn, index) {
-                var buttonContainer = document.createElement('div');
-                buttonContainer.className = 'button-container';
+  function openPopup() {
+    document.getElementById("popup").style.display = "flex";
+  }
 
-                var button = document.createElement('button');
-                var description = document.createElement('div');
+  function closePopup() {
+    document.getElementById("popup").style.display = "none";
+  }
 
-                button.innerText = btn.name;
-                button.style.backgroundColor = btn.color;
-                button.onclick = function() {
-                    location.href = links[index];
-                };
-                description.className = 'button-description';
-                description.innerText = btn.description;
+  function showDeveloperPasswordPrompt() {
+    document.getElementById("developer-password-popup").style.display = "flex";
+  }
 
-                buttonContainer.appendChild(button);
-                buttonContainer.appendChild(description);
-                dominantButtons.appendChild(buttonContainer);
-            });
+  function closeDeveloperPasswordPopup() {
+    document.getElementById("developer-password-popup").style.display = "none";
+  }
 
-            thankYouImage.classList.remove('hidden');
-        } else {
-            errorMessage.classList.remove('hidden');
-            dominantButtons.classList.add('hidden');
-            thankYouImage.classList.add('hidden');
-        }
+  function checkDeveloperPassword() {
+    const developerPasswordInput = document.getElementById("developer-password").value;
+    if (developerPasswordInput === developerPassword) {
+      closeDeveloperPasswordPopup();
+      showSettingsPopup();
+    } else {
+      alert("كلمة مرور المطور خاطئة.");
     }
+  }
 
-    function showMessage2() {
-        document.getElementById('message').innerText = 'تحت التطوير';
-    }
+  function showSettingsPopup() {
+    document.getElementById("settings-popup").style.display = "flex";
+  }
 
-    function showMessage3() {
-        document.getElementById('message').innerText = 'تحت التطوير';
+  function closeSettingsPopup() {
+    document.getElementById("settings-popup").style.display = "none";
+  }
+
+  function changePassword() {
+    const newPassword = document.getElementById("new-password").value;
+    if (newPassword) {
+      currentPassword = newPassword;
+      alert("تم تغيير كلمة المرور بنجاح.");
+      closeSettingsPopup();
+    } else {
+      alert("من فضلك أدخل كلمة مرور جديدة.");
     }
+  }
 </script>
 
 </body>
