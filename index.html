@@ -30,8 +30,26 @@
       bottom: 0;
     }
 
+    .developer-icon {
+      position: fixed;
+      bottom: 70px;
+      left: 20px;
+      background-color: #257180;
+      color: white;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
     .nav {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       margin: 10px;
     }
@@ -43,6 +61,7 @@
       cursor: pointer;
       font-size: 20px;
       width: 32%;
+      margin-bottom: 10px;
     }
 
     .nav button:first-child {
@@ -56,19 +75,93 @@
 
     .hero {
       background: linear-gradient(90deg, #257180, #4CAF50);
-      padding: 60px 20px;
+      padding: 40px 20px;
       color: white;
       text-align: center;
       animation: fadeIn 1.5s ease-in-out;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
     }
 
-    .hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
+    .hero-content {
+      flex: 2;
+      text-align: right;
+      padding-right: 20px;
     }
 
-    .hero p {
-      font-size: 1.2rem;
+    .clients-slider {
+      flex: 1;
+      height: 180px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 10px;
+      min-width: 250px;
+    }
+
+    .clients-title {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 1rem;
+      color: white;
+      background-color: rgba(37, 113, 128, 0.7);
+      padding: 5px 10px;
+      border-radius: 5px;
+      z-index: 10;
+    }
+
+    .client-card {
+      position: absolute;
+      top: 50;
+      right: 0;
+      width: 100%;
+      height: 115%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      opacity: 0;
+      transform: translateX(30px);
+      transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    .client-card.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .client-image {
+      width: 100px;
+      height: 130px;
+      object-fit: cover;
+      margin-left: 15px;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 5px;
+    }
+
+    .client-info {
+      text-align: right;
+      flex: 1;
+    }
+
+    .client-info h3 {
+      margin: 0;
+      font-size: 1.1rem;
+      color: #fff;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
+
+    .client-info p {
+      margin: 5px 0 0;
+      font-size: 0.8rem;
+      color: #f0f0f0;
     }
 
     @keyframes fadeIn {
@@ -133,26 +226,28 @@
 
     .download-link {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       background-color: #fff;
-      padding: 15px;
+      padding: 10px 15px;
       margin: 10px 0;
       border-radius: 10px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       transition: transform 0.3s ease;
       cursor: pointer;
+      font-size: 0.9rem;
     }
 
     .download-link:hover {
-      transform: scale(1.05);
+      transform: scale(1.03);
       background-color: #f9f9f9;
     }
 
     .download-link p {
       color: #257180;
+      margin: 5px 0;
     }
 
-    .popup {
+    .popup, .settings-popup {
       display: none;
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -162,7 +257,7 @@
       z-index: 999;
     }
 
-    .popup-content {
+    .popup-content, .settings-popup-content {
       background-color: white;
       padding: 30px;
       border-radius: 10px;
@@ -170,7 +265,7 @@
       text-align: center;
     }
 
-    .popup-content h4 {
+    .popup-content h4, .settings-popup-content h4 {
       color: #257180;
       margin-bottom: 15px;
     }
@@ -187,24 +282,6 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
-    }
-
-    .settings-popup {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-color: rgba(0, 0, 0, 0.6);
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-
-    .settings-popup-content {
-      background-color: white;
-      padding: 30px;
-      border-radius: 10px;
-      max-width: 400px;
-      text-align: center;
     }
 
     .settings-popup input {
@@ -227,12 +304,36 @@
     @media (max-width: 768px) {
       .nav button {
         width: 100%;
-        margin-bottom: 10px;
       }
 
       .tabs {
         flex-direction: column;
         align-items: center;
+      }
+
+      .hero {
+        flex-direction: column;
+        padding: 40px 20px;
+      }
+
+      .hero-content {
+        padding-right: 0;
+        margin-bottom: 20px;
+      }
+
+      .clients-slider {
+        width: 100%;
+        height: 180px;
+      }
+
+      .clients-slider {
+        height: 150px;
+        min-width: 200px;
+      }
+      
+      .client-image {
+        width: 80px;
+        height: 80px;
       }
     }
   </style>
@@ -247,12 +348,19 @@
   <button onclick="showPasswordPrompt()">The Dominant خاص ببرنامج</button>
   <button onclick="showMessage2()">خدمات الموقع</button>
   <button onclick="showMessage3()">خاص ببرنامج إدارة الحضانات والأكاديميات</button>
-  <button onclick="showDeveloperPasswordPrompt()">إعدادات المطور</button>
 </div>
 
+<div class="developer-icon" onclick="showDeveloperPasswordPrompt()">⚙</div>
+
 <div class="hero" id="dynamic-hero">
-  <h1>أهلاً بك في Yafa</h1>
-  <p>نظام متكامل لإدارة الحضانات والدروس الخصوصية بكل سهولة واحترافية</p>
+  <div class="hero-content">
+    <h1>أهلاً بك في Yafa</h1>
+    <p>نظام متكامل لإدارة الحضانات والدروس الخصوصية بكل سهولة واحترافية</p>
+  </div>
+  <div class="clients-slider" id="clients-slider">
+    <div class="clients-title">من عملائنا الكرام</div>
+    <!-- سيتم إضافة العملاء هنا عبر الجافاسكريبت -->
+  </div>
 </div>
 
 <div class="updates">
@@ -278,9 +386,6 @@
   </div>
 </div>
 
-
-
-<!-- Popup -->
 <div class="popup" id="popup">
   <div class="popup-content">
     <h4>كيفية الدفع والاشتراك</h4>
@@ -295,7 +400,6 @@
   </div>
 </div>
 
-<!-- Developer Password Prompt -->
 <div class="settings-popup" id="developer-password-popup">
   <div class="settings-popup-content">
     <h4>أدخل كلمة مرور المطور</h4>
@@ -305,7 +409,6 @@
   </div>
 </div>
 
-<!-- Settings Popup -->
 <div class="settings-popup" id="settings-popup">
   <div class="settings-popup-content">
     <h4>تغيير كلمة مرور عرض روابط التحميل</h4>
@@ -320,61 +423,171 @@
 </div>
 
 <script>
-  let currentPassword = "5050";  // كلمة المرور الحالية لعرض روابط التحميل
-  let developerPassword = "0100";  // كلمة مرور المطور
+  let currentPassword = "5050";
+  let developerPassword = "0100";
+
+  // بيانات العملاء (يمكن استبدالها ببيانات حقيقية)
+  const clients = [
+    {
+      name: "الأستاذ/ حمدي علي",
+      subject: "مدرس رياضيات",
+      image: "1.png"
+    },
+    {
+      name: "أستاذ/ خاطر محسن",
+      subject: "مدرس جغرافيا وجولوجيا",
+      image: "2.png"
+    },
+    {
+      name: "الأستاذ/ هاني محمد الشناوي",
+      subject: "مدرس لغة إنجليزية",
+      image: "3.png"
+    },
+    {
+      name: "الأستاذ/ سيد أبو صالحة",
+      subject: "مدرس فيزياء",
+      image: "4.png"
+    },
+    {
+      name: "الأستاذ/ عمرو عبدالغني",
+      subject: "مدرس دراسات",
+      image: "5.png"
+    },
+    {
+      name: "الأستاذ/ حافظ جلال",
+      subject: "مدرس لغة عربية",
+      image: "6.png"
+    },
+    {
+      name: "الأستاذ/ محمد رزق",
+      subject: "مدرس لغة عربية",
+      image: "7.png"
+    },
+    {
+      name: "الأستاذ/ كريم طارق البكري",
+      subject: "مدرس لغة إنجليزية",
+      image: "8.png"
+    },
+    {
+      name: "الأستاذ/ بهاء السيد",
+      subject: "مدرس فزياء",
+      image: "9.png"
+    },
+    {
+      name: "الأستاذ/ محمد ضياء",
+      subject: "مدرس علوم",
+      image: "10.png"
+    }
+  ];
+
+  // عرض العملاء بشكل متحرك
+  function initClientsSlider() {
+    const slider = document.getElementById("clients-slider");
+    let currentIndex = 0;
+
+    // إنشاء بطاقات العملاء
+    clients.forEach((client, index) => {
+      const clientCard = document.createElement("div");
+      clientCard.className = "client-card";
+      clientCard.innerHTML = `
+        <img src="${client.image}" alt="${client.name}" class="client-image">
+        <div class="client-info">
+          <h3>${client.name}</h3>
+          <p>${client.subject}</p>
+        </div>
+      `;
+      slider.appendChild(clientCard);
+    });
+
+    const clientCards = document.querySelectorAll(".client-card");
+    
+    // عرض أول عميل
+    if (clientCards.length > 0) {
+      clientCards[0].classList.add("active");
+    }
+    // تغيير العميل كل 4 ثوانٍ
+    setInterval(() => {
+      if (clientCards.length > 0) {
+        clientCards[currentIndex].classList.remove("active");
+        currentIndex = (currentIndex + 1) % clients.length;
+        
+        // إضافة تأخير قبل إظهار العميل التالي
+        setTimeout(() => {
+          clientCards[currentIndex].classList.add("active");
+        }, 300);
+      }
+    }, 4000);
+  }
+
+  // تهيئة السلايدر عند تحميل الصفحة
+  window.onload = function() {
+    initClientsSlider();
+  };
 
   function showPasswordPrompt() {
     const heroSection = document.getElementById("dynamic-hero");
     heroSection.innerHTML = `
-      <h1>كلمة المرور الخاصة بـ "The Dominant"</h1>
-      <input type="password" id="password" placeholder="أدخل كلمة المرور" style="padding: 10px; margin-top: 20px;">
-      <button onclick="checkPassword()" style="padding: 10px 20px; margin-top: 10px; background-color: #257180; color: white;">إظهار روابط التحميل</button>
-      <p id="error-message" style="color: red; display: none; margin-top: 10px;">كلمة المرور خاطئة. تواصل مع الدعم الفني 01205557825 للاشتراك والحصول على كلمة مرور.</p>
+      <div class="hero-content">
+        <h1>كلمة المرور الخاصة بـ "The Dominant"</h1>
+        <input type="password" id="password" placeholder="أدخل كلمة المرور" style="padding: 10px; margin-top: 20px;">
+        <button onclick="checkPassword()" style="padding: 10px 20px; margin-top: 10px; background-color: #257180; color: white;">إظهار روابط التحميل</button>
+        <p id="error-message" style="color: red; display: none; margin-top: 10px;">كلمة المرور خاطئة. تواصل مع الدعم الفني 01205557825 للاشتراك والحصول على كلمة مرور.</p>
+      </div>
+      <div class="clients-slider" id="clients-slider">
+        <div class="clients-title">من عملائنا الكرام</div>
+      </div>
     `;
+    initClientsSlider();
   }
-
   function checkPassword() {
     const passwordInput = document.getElementById("password").value;
     const errorMessage = document.getElementById("error-message");
 
     if (passwordInput === currentPassword) {
       document.getElementById("dynamic-hero").innerHTML = `
-
-
-
-<!-- روابط التحميل المحسنة -->
-<h1> روابط التحميل لـ برنامج "The Dominant" الخاص بتنظيم بيانات الطلاب</h1>
-<div class="download-link" onclick="window.open('https://drive.google.com/file/d/1B3Ue_1KFlGPhnsP-wmYZ347LePDglGsR/view?usp=sharing')">
-  <p>تحميل البرامج</p>
-  <p> قم بتحميل الثلاث برامج من هنا في رابط واحد وستجد معه صورة بها كيفية التسطيب</p>
-</div>
-<div class="download-link" onclick="window.open('https://drive.google.com/file/d/1C183TaPV4A1IocbKpfgHR7bWljqrPg_E/view?usp=sharing')">
-  <p>شرح البرنامج</p>
-  <p>فيديو شرح برنامج الطلاب بكل تفاصيله</p>
-</div>
-<div class="download-link" onclick="window.open('https://youtu.be/7k_pY1Yx5Dg')">
-  <p>فيديو شرح واتساب سيندر</p>
-  <p>شرح برنامج واتساب سيندر التسطيب والإرسال</p>
-</div>
-
-
-
-
-     
+        <div class="hero-content">
+          <h1>روابط التحميل لـ برنامج "The Dominant" الخاص بتنظيم بيانات الطلاب</h1>
+          <div class="download-link" onclick="window.open('https://drive.google.com/file/d/1B3Ue_1KFlGPhnsP-wmYZ347LePDglGsR/view?usp=sharing')">
+            <p>تحميل البرامج</p>
+            <p>قم بتحميل الثلاث برامج من هنا في رابط واحد وستجد معه صورة بها كيفية التسطيب</p>
+          </div>
+          <div class="download-link" onclick="window.open('https://drive.google.com/file/d/1C183TaPV4A1IocbKpfgHR7bWljqrPg_E/view?usp=sharing')">
+            <p>شرح البرنامج</p>
+            <p>فيديو شرح برنامج الطلاب بكل تفاصيله</p>
+          </div>
+          <div class="download-link" onclick="window.open('https://youtu.be/7k_pY1Yx5Dg')">
+            <p>فيديو شرح واتساب سيندر</p>
+            <p>شرح برنامج واتساب سيندر التسطيب والإرسال</p>
+          </div>
+        </div>
+        <div class="clients-slider" id="clients-slider"></div>
       `;
+      initClientsSlider();
     } else {
       errorMessage.style.display = "block";
     }
   }
 
   function showMessage2() {
-    document.querySelector('.hero h1').innerText = 'خدمات الموقع قيد التطوير';
-    document.querySelector('.hero p').innerText = 'تابعنا للحصول على آخر التحديثات.';
+    document.getElementById('dynamic-hero').innerHTML = `
+      <div class="hero-content">
+        <h1>خدمات الموقع تحت التطوير</h1>
+        <button onclick="window.location.href='index2.html'" style="margin-top: 20px; padding: 10px 20px; background-color: #257180; color: white; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer;">اذهب إلى الصفحة</button>
+      </div>
+      <div class="clients-slider" id="clients-slider"></div>
+    `;
+    initClientsSlider();
   }
 
   function showMessage3() {
-    document.querySelector('.hero h1').innerText = 'إدارة الحضانات قيد التطوير';
-    document.querySelector('.hero p').innerText = 'تابعنا للحصول على آخر التحديثات.';
+    document.getElementById('dynamic-hero').innerHTML = `
+      <div class="hero-content">
+        <h1>إدارة الحضانات قيد التطوير</h1>
+        <p>تابعنا للحصول على آخر التحديثات.</p>
+      </div>
+      <div class="clients-slider" id="clients-slider"></div>
+    `;
+    initClientsSlider();
   }
 
   function openPopup() {
