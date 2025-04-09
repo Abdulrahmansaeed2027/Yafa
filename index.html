@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-
-<meta property="og:title" content="YAFA - لخدمات المدرسين وإدارة الدروس الخصوصية">
-<meta property="og:description" content="منصة YAFA توفر لك حلولاً ذكية لإدارة أعمالك بسهولة واحترافية.">
-<meta property="og:image" content="14.png">
-<meta property="og:url" content="https://abdulrahmansaeed2027.github.io/Yafa/">
-<meta property="og:type" content="website">
-  
   <meta charset="UTF-8">
   <title>YAFA</title>
   <link rel="icon" href="لوجو-يافا-ايقون.ico" type="image/x-icon">
@@ -20,33 +13,29 @@
   scroll-behavior: smooth;
   transition: all 0.3s ease-in-out;
 
-      background-color: #f2e5bf;
+      background-color: #ffffff;
       font-family: 'Cairo', sans-serif;
       margin: 0;
       padding: 0;
     }
 
     .header {
-      background-color: #257180;
+      background: linear-gradient(90deg, #00A5CF, #004E64);
       color: white;
-      padding: 10px;
+      padding: 30px;
       text-align: center;
-    }
-
-    .footer {
-      background-color: #fd8b51;
-      color: white;
-      text-align: center;
-      padding: 10px;
       position: fixed;
       width: 100%;
-      bottom: 0;
+      Top: 0;
+      
     }
+
+    
 
     .developer-icon {
       position: fixed;
-      bottom: 70px;
-      left: 20px;
+      bottom: 20px;
+      right: 20px;
       background-color: #257180;
       color: white;
       border-radius: 50%;
@@ -64,32 +53,40 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      margin: 10px;
+      margin-top: 100px;
+      margin: 150px;
+      
     }
 
     .nav button {
-      background-color: #f1f1f1;
+      background-color: #00A5CF;
       border: none;
-      padding: 20px;
+      color: rgb(255, 255, 255);
+      padding: 30px;
       cursor: pointer;
       font-size: 20px;
       width: 32%;
       margin-bottom: 10px;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 15px;
+      margin-top: 30px;
     }
 
     .nav button:first-child {
-      background-color: #ffffff;
-      color: rgb(0, 0, 0);
+      background-color: #048aac;
+      color: rgb(255, 255, 255);
     }
 
     .nav button:hover {
-      background-color: #ddd;
+      background-color: #4CAF50;
     }
 
     .hero {
       background: linear-gradient(90deg, #00A5CF, #004E64);
       padding: 70px 20px;
-      top: 30px;
+      top: 70px;
+      margin-top: -180px;
       color: white;
       text-align: center;
       animation: fadeIn 1.5s ease-in-out;
@@ -259,8 +256,8 @@
     }
 
     .tab {
-      background-color: #ffffff;
-      border-radius: 10px;
+      background: linear-gradient(90deg, #048aacd7, #048aac);
+      border-radius: 20px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       padding: 20px;
       width: 200px;
@@ -273,7 +270,7 @@
     }
 
     .tab h3 {
-      color: #257180;
+      color: #ffffff;
     }
 
     .tab p {
@@ -281,18 +278,18 @@
     }
 
     .tab button {
-      background-color: #257180;
-      color: white;
+      background-color: #dfeff2;
+      color: rgb(0, 0, 0);
       border: none;
       padding: 10px 20px;
-      border-radius: 5px;
+      border-radius: 10px;
       cursor: pointer;
       transition: transform 0.3s ease;
     }
 
     .tab button:hover {
       transform: scale(1.1);
-      background-color: #4CAF50;
+      background-color: #7bb67d;
     }
 
     .download-link {
@@ -483,6 +480,14 @@
   <div class="tab">
     <h3>الخطة السنوية</h3>
     <p>490 ج - برنامج إدارة الدروس الخصوصية</p>
+    <style>
+
+.tab {
+    
+    color: white;
+    
+  }
+    </style>
     <button onclick="openPopup()">كيفية الاشتراك</button>
   </div>
   <div class="tab">
@@ -529,9 +534,7 @@
   </div>
 </div>
 
-<div class="footer">
-  <img src="whats.png" alt="Contact Icon" width="30px"> للتواصل: 01205557825
-</div>
+
 
 <script>
   let currentPassword = "42025";
@@ -616,7 +619,7 @@
     if (clientCards.length > 0) {
       clientCards[0].classList.add("active");
     }
-    // تغيير العميل كل 4 ثوانٍ
+    // تغيير العميل كل 2 ثوانٍ
     setInterval(() => {
       if (clientCards.length > 0) {
         clientCards[currentIndex].classList.remove("active");
@@ -627,7 +630,7 @@
           clientCards[currentIndex].classList.add("active");
         }, 300);
       }
-    }, 4000);
+    }, 2000);
   }
 
   // دالة جديدة لإدارة الصور المتحركة
@@ -768,6 +771,40 @@
     }
   }
 </script>
+<!-- زر خدمة العملاء واتساب -->
+<a href="https://wa.me/201205557825" class="whatsapp-float" target="_blank" title="خدمة العملاء على واتساب">
+  خدمة العملاء
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+</a>
+
+<style>
+  .whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: #20a450;
+    color: white;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 50px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    z-index: 9999;
+    transition: background-color 0.3s ease;
+  }
+
+  .whatsapp-float:hover {
+    background-color: #1ebe5b;
+  }
+
+  .whatsapp-float img {
+    width: 20px;
+    height: 20px;
+  }
+</style>
 
 </body>
 </html>
