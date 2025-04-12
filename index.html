@@ -495,25 +495,33 @@
 }
 
 .download-program-btn {
-  position: fixed;
-  bottom: 80px;
-  left: 20px;
-  background-color: #00A5CF;
+  display: block;
+  margin: 60px auto 30px; /* auto يوسّط الزر أفقياً */
+  background-color: #04c371;
   color: white;
-  padding: 15px 25px;
+  padding: 15px 40px;
   border-radius: 50px;
   cursor: pointer;
   font-weight: bold;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  z-index: 9999;
   border: none;
   transition: all 0.3s;
+  font-family: 'Cairo', sans-serif;
+  font-size: 14px;
+  text-align: center;
+}
+
+  
+  /* تغيير نوع وحجم الخط */
+  font-family: 'Cairo', sans-serif; /* تقدر تختار الخط اللي تفضله */
+  font-size: 18px;
 }
 
 .download-program-btn:hover {
   background-color: #0082a3;
-  transform: translateY(-3px);
+ 
 }
+
   </style>
 </head>
 <body>
@@ -527,8 +535,7 @@
   <button onclick="showMessage2()">خدمات الموقع</button>
   <button onclick="showMessage3()">خاص ببرنامج إدارة الحضانات والأكاديميات</button>
 </div>
-<!-- زر تحميل البرنامج -->
-<button class="download-program-btn" onclick="showDownloadProgramPopup()">تحميل البرنامج</button>
+
 
 <!-- نافذة تحميل البرنامج -->
 <div class="download-program-popup" id="downloadProgramPopup">
@@ -557,6 +564,9 @@
     <div class="clients-title">من عملائنا الكرام</div>
   </div>
 </div>
+
+
+
 
 <!-- قسم الصور المتحركة الجديد -->
 <div class="image-slider" id="image-slider">
@@ -655,6 +665,20 @@
       subject: "مدرس رياضيات",
       image: "1.png"
     },
+
+
+    {
+
+
+name: "الأستاذة/ إلهام سليم",
+  subject: "مدرسة علوم",
+  image: "15.png"
+
+},
+
+
+
+
     {
       name: "أستاذ/ خاطر محسن",
       subject: "مدرس جغرافيا وجولوجيا",
@@ -829,7 +853,7 @@
     document.getElementById('dynamic-hero').innerHTML = `
       <div class="hero-content">
         <h1>إدارة الحضانات قيد التطوير</h1>
-        <p>تابعنا للحصول على آخر التحديثات.</p>
+        <p>تابعنا لمعرفة كل جديد.</p>
       </div>
       <div class="clients-slider" id="clients-slider"></div>
     `;
@@ -852,6 +876,8 @@
 function showDownloadProgramPopup() {
   document.getElementById("downloadProgramPopup").style.display = "flex";
 }
+
+
 
 function closeDownloadProgramPopup() {
   document.getElementById("downloadProgramPopup").style.display = "none";
@@ -917,6 +943,9 @@ function contactSupport() {
   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
 </a>
 
+
+<!-- زر تحميل البرنامج -->
+<button class="download-program-btn" onclick="showDownloadProgramPopup()">تحميل البرنامج 📥</button>
 <style>
   .whatsapp-float {
     position: fixed;
