@@ -422,6 +422,98 @@
         font-size: 0.8rem;
       }
     }
+
+
+
+    /* أنماط جديدة للنافذة وأزرار التحميل */
+.download-program-popup {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0,0,0,0.7);
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.download-program-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.download-program-content h3 {
+  color: #004E64;
+  margin-bottom: 20px;
+}
+
+.download-program-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  gap: 10px;
+}
+
+.download-program-buttons button {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.download-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.download-btn:hover {
+  background-color: #3e8e41;
+}
+
+.whatsapp-btn {
+  background-color: #25D366;
+  color: white;
+}
+
+.whatsapp-btn:hover {
+  background-color: #128C7E;
+}
+
+.close-btn-popup {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.close-btn-popup:hover {
+  background-color: #c0392b;
+}
+
+.download-program-btn {
+  position: fixed;
+  bottom: 80px;
+  left: 20px;
+  background-color: #00A5CF;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  z-index: 9999;
+  border: none;
+  transition: all 0.3s;
+}
+
+.download-program-btn:hover {
+  background-color: #0082a3;
+  transform: translateY(-3px);
+}
   </style>
 </head>
 <body>
@@ -435,8 +527,23 @@
   <button onclick="showMessage2()">خدمات الموقع</button>
   <button onclick="showMessage3()">خاص ببرنامج إدارة الحضانات والأكاديميات</button>
 </div>
+<!-- زر تحميل البرنامج -->
+<button class="download-program-btn" onclick="showDownloadProgramPopup()">تحميل البرنامج</button>
 
+<!-- نافذة تحميل البرنامج -->
+<div class="download-program-popup" id="downloadProgramPopup">
+  <div class="download-program-content">
+    <h3>طريقة تحميل البرنامج</h3>
+    <p>لتحميل البرنامج قم بتحويل قيمة الخطة التي تريدها على رقم 01009311365 وتواصل مع الدعم الفني على رقم 01205557825 للحصول على كلمة المرور لتحميل البرنامج</p>
+    <div class="download-program-buttons">
+      <button class="download-btn" onclick="handleDownload()">تحميل</button>
+      <button class="whatsapp-btn" onclick="contactSupport()">التواصل مع الدعم الفني</button>
+      <button class="close-btn-popup" onclick="closeDownloadProgramPopup()">إغلاق</button>
+    </div>
+  </div>
+</div>
 <div class="developer-icon" onclick="showDeveloperPasswordPrompt()">⚙</div>
+
 
 <div class="hero" id="dynamic-hero">
   <div class="hero-content">
@@ -665,7 +772,7 @@
     const heroSection = document.getElementById("dynamic-hero");
     heroSection.innerHTML = `
       <div class="hero-content">
-        <h1>كلمة المرور الخاصة بـ "The Dominant"</h1>
+        <p>كلمة المرور الخاصة بـ "The Dominant" تحصل عليها من الدعم الفني بعد الإشتراك في أي من الخطط المتاحة</p>
         <input type="password" id="password" placeholder="أدخل كلمة المرور" style="padding: 10px; margin-top: 20px;">
         <button onclick="checkPassword()" style="padding: 10px 20px; margin-top: 10px; background-color: #257180; color: white;">إظهار روابط التحميل</button>
         <p id="error-message" style="color: red; display: none; margin-top: 10px;">كلمة المرور خاطئة. تواصل مع الدعم الفني 01205557825 للاشتراك والحصول على كلمة مرور.</p>
@@ -740,6 +847,36 @@
   function showDeveloperPasswordPrompt() {
     document.getElementById("developer-password-popup").style.display = "flex";
   }
+
+  // دوال جديدة لتحميل البرنامج
+function showDownloadProgramPopup() {
+  document.getElementById("downloadProgramPopup").style.display = "flex";
+}
+
+function closeDownloadProgramPopup() {
+  document.getElementById("downloadProgramPopup").style.display = "none";
+}
+
+function handleDownload() {
+  // إغلاق النافذة
+  closeDownloadProgramPopup();
+  
+  // التوجيه لأعلى الصفحة
+  window.scrollTo({top: 0, behavior: 'smooth'});
+  
+  // فتح قسم "The Dominant" بعد تأخير بسيط
+  setTimeout(() => {
+    showPasswordPrompt();
+  }, 1000);
+}
+
+function contactSupport() {
+  // فتح محادثة واتساب
+  window.open('https://wa.me/201205557825', '_blank');
+  
+  // إغلاق النافذة
+  closeDownloadProgramPopup();
+}
 
   function closeDeveloperPasswordPopup() {
     document.getElementById("developer-password-popup").style.display = "none";
