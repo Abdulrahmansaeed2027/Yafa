@@ -22,11 +22,12 @@
     .header {
       background: linear-gradient(90deg, #00A5CF, #004E64);
       color: white;
-      padding: 30px;
+      padding: 9px;
       text-align: center;
       position: fixed;
       width: 100%;
       Top: 0;
+      z-index: 9999;
       
     }
 
@@ -256,7 +257,7 @@
     }
 
     .tab {
-      background: linear-gradient(90deg, #048aacd7, #048aac);
+      background: rgba(45, 102, 227, 0.8);
       border-radius: 20px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       padding: 20px;
@@ -479,7 +480,7 @@
 <div class="tabs">
   <div class="tab">
     <h3>الخطة السنوية</h3>
-    <p>490 ج - برنامج إدارة الدروس الخصوصية</p>
+    <p>500 ج - برنامج إدارة الدروس الخصوصية مفعل لمدة سنة</p>
     <style>
 
 .tab {
@@ -491,8 +492,8 @@
     <button onclick="openPopup()">كيفية الاشتراك</button>
   </div>
   <div class="tab">
-    <h3>شراء كامل</h3>
-    <p>1500 ج - مفعل مدى الحياة</p>
+    <h3>الخطة النصف سنوية</h3>
+    <p>التكلفة لمدة 6 شهور بتكلفة 250 ج</p>
     <button onclick="openPopup()">كيفية الاشتراك</button>
   </div>
   <div class="tab">
@@ -708,7 +709,9 @@
     document.getElementById('dynamic-hero').innerHTML = `
       <div class="hero-content">
         <h1>خدمات الموقع تحت التطوير</h1>
-        <button onclick="window.location.href='index2.html'" style="margin-top: 20px; padding: 10px 20px; background-color: #257180; color: white; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer;">اذهب إلى الصفحة</button>
+        <button onclick="window.location.href='index2.html'" style="margin-top: 20px; padding: 10px 20px; background-color: #257180; color: white; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer;">تحويل ملف إكسيل أسماء وأرقام إلى ملف vcf قابل للحفظ على الهاتف كجهات اتصال</button>
+        ـــــــــــــــــــــــــــــــ
+        <button onclick="window.location.href='index2.html'" style="margin-top: 20px; padding: 10px 20px; background-color: #257180; color: white; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer;">عمل شهادات تقدير بضغطة واحدة</button>
       </div>
       <div class="clients-slider" id="clients-slider"></div>
     `;
