@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>محول جهات الاتصال - Excel إلى VCF</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #4361ee;
+      --secondary-color: #3f37c9;
+      --accent-color: #4895ef;
+      --light-color: #f8f9fa;
+      --dark-color: #212529;
+      --success-color: #4cc9f0;
+      --warning-color: #f72585;
+      --border-radius: 8px;
+      --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Tajawal', 'Segoe UI', sans-serif;
+      background-color: #f5f7fa;
+      color: var(--dark-color);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 100%;
+      padding: 0 15px;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      text-align: center;
+      padding: 1.5rem 0;
+      box-shadow: var(--box-shadow);
+      margin-bottom: 2rem;
+    }
+
+    header img {
+      max-width: 100%;
+      height: auto;
+      max-height: 120px;
+      object-fit: contain;
+    }
+
+    .app-title {
+      font-size: 1.8rem;
+      margin-top: 0.5rem;
+      font-weight: 700;
+    }
+
+    .app-description {
+      font-size: 1rem;
+      opacity: 0.9;
+      margin-top: 0.5rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-title {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .file-upload {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 1.5rem 0;
+      padding: 2rem;
+      border: 2px dashed #ccc;
+      border-radius: var(--border-radius);
+      background-color: #f8f9fa;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .file-upload:hover {
+      border-color: var(--primary-color);
+      background-color: rgba(67, 97, 238, 0.05);
+    }
+
+    .file-upload i {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+
+    .file-upload-text {
+      text-align: center;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .file-name {
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 0.5rem;
+      word-break: break-all;
+    }
+
+    .options-title {
+      font-size: 1.2rem;
+      margin: 1.5rem 0 1rem;
+      color: var(--dark-color);
+      font-weight: 600;
+    }
+
+    .field-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    .field-option {
+      display: flex;
+      align-items: center;
+      padding: 0.5rem;
+      background: #f8f9fa;
+      border-radius: 5px;
+      transition: var(--transition);
+    }
+
+    .field-option:hover {
+      background: #e9ecef;
+    }
+
+    .field-option input {
+      margin-left: 0.5rem;
+      cursor: pointer;
+    }
+
+    .field-option label {
+      cursor: pointer;
+      flex-grow: 1;
+      margin: 0;
+      padding: 0.3rem 0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: var(--border-radius);
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      margin: 0.5rem 0;
+      width: 100%;
+    }
+
+    .btn-primary {
+      background-color: var(--primary-color);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--secondary-color);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background-color: #6c757d;
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background-color: #5a6268;
+      transform: translateY(-2px);
+    }
+
+    .btn i {
+      margin-left: 0.5rem;
+    }
+
+    .download-link {
+      display: none;
+      margin-top: 1.5rem;
+      text-align: center;
+    }
+
+    .download-link a {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.8rem 1.5rem;
+      background-color: var(--success-color);
+      color: white;
+      border-radius: var(--border-radius);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .download-link a:hover {
+      background-color: #3aa8d8;
+      transform: translateY(-2px);
+    }
+
+    .select-toggle {
+      color: var(--primary-color);
+      cursor: pointer;
+      font-weight: 500;
+      margin: 0.5rem 0;
+      display: inline-block;
+    }
+
+    .select-toggle:hover {
+      text-decoration: underline;
+    }
+
+    .steps {
+      margin: 2rem 0;
+    }
+
+    .step {
+      display: flex;
+      margin-bottom: 1.5rem;
+      align-items: flex-start;
+    }
+
+    .step-number {
+      background-color: var(--primary-color);
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 1rem;
+      flex-shrink: 0;
+      font-weight: bold;
+    }
+
+    .step-content {
+      flex-grow: 1;
+    }
+
+    .step-title {
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .step-description {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    /* معاينة جهات الاتصال */
+    .preview-section {
+      display: none;
+      margin-top: 2rem;
+      border-top: 1px solid #eee;
+      padding-top: 1.5rem;
+    }
+
+    .preview-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .preview-title {
+      font-size: 1.3rem;
+      color: var(--primary-color);
+    }
+
+    .contacts-count {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+    }
+
+    .contacts-preview {
+      max-height: 400px;
+      overflow-y: auto;
+      border: 1px solid #ddd;
+      border-radius: var(--border-radius);
+      padding: 1rem;
+      background-color: #f9f9f9;
+    }
+
+    .contact-card {
+      background: white;
+      border-radius: var(--border-radius);
+      padding: 1rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      border-left: 4px solid var(--primary-color);
+    }
+
+    .contact-name {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--dark-color);
+    }
+
+    .contact-detail {
+      display: flex;
+      margin-bottom: 0.3rem;
+      font-size: 0.9rem;
+    }
+
+    .contact-detail i {
+      width: 20px;
+      color: var(--primary-color);
+      margin-left: 0.5rem;
+    }
+
+    .preview-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        max-width: 750px;
+        margin: 0 auto;
+      }
+
+      .btn {
+        width: auto;
+      }
+
+      .actions {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .actions .btn {
+        flex: 1;
+      }
+
+      .preview-actions .btn {
+        flex: none;
+      }
+    }
+
+    @media (min-width: 992px) {
+      .container {
+        max-width: 970px;
+      }
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      animation: fadeIn 0.5s ease forwards;
+    }
+
+    /* Loading spinner */
+    .spinner {
+      display: none;
+      width: 24px;
+      height: 24px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+      margin-right: 8px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <img src="banar.png" alt="شعار الموقع">
+      <h1 class="app-title">محول جهات الاتصال</h1>
+      <p class="app-description">تحويل ملفات Excel إلى ملفات VCF لجهات الاتصال</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="steps">
+      <div class="step fade-in" style="animation-delay: 0.1s;">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3 class="step-title">رفع ملف Excel</h3>
+          <p class="step-description">اختر ملف Excel الذي يحتوي على بيانات جهات الاتصال</p>
+        </div>
+      </div>
+      <div class="step fade-in" style="animation-delay: 0.2s;">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3 class="step-title">تحديد الحقول المطلوبة</h3>
+          <p class="step-description">اختر الحقول التي تريد تضمينها في ملف جهات الاتصال</p>
+        </div>
+      </div>
+      <div class="step fade-in" style="animation-delay: 0.3s;">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3 class="step-title">معاينة والتحميل</h3>
+          <p class="step-description">معاينة جهات الاتصال ثم تحميل الملف النهائي</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card fade-in" style="animation-delay: 0.4s;">
+      <h2 class="card-title">ابدأ التحويل الآن</h2>
+      
+      <input type="file" id="excelFile" accept=".xlsx, .xls" style="display: none;">
+      <div class="file-upload" id="fileUploadArea">
+        <i class="fas fa-file-excel"></i>
+        <p class="file-upload-text">انقر لرفع ملف Excel أو اسحبه وأسقطه هنا</p>
+        <p class="file-name" id="fileName">لم يتم اختيار أي ملف</p>
+      </div>
+
+      <h3 class="options-title">خيارات التحويل</h3>
+      <span class="select-toggle" onclick="toggleAllFields()">
+        <i class="fas fa-check-circle"></i> تحديد الكل / إلغاء الكل
+      </span>
+      
+      <div class="field-options">
+        <div class="field-option">
+          <input type="checkbox" class="fieldCheck" id="fieldPhone1" checked>
+          <label for="fieldPhone1">رقم الهاتف (أساسي)</label>
+        </div>
+        <div class="field-option">
+          <input type="checkbox" class="fieldCheck" id="fieldPhone2">
+          <label for="fieldPhone2">رقم هاتف ثاني</label>
+        </div>
+        <div class="field-option">
+          <input type="checkbox" class="fieldCheck" id="fieldPhone3">
+          <label for="fieldPhone3">رقم هاتف ثالث</label>
+        </div>
+        <div class="field-option">
+          <input type="checkbox" class="fieldCheck" id="fieldEmail">
+          <label for="fieldEmail">بريد إلكتروني</label>
+        </div>
+        <div class="field-option">
+          <input type="checkbox" class="fieldCheck" id="fieldAddress">
+          <label for="fieldAddress">عنوان</label>
+        </div>
+        <div class="field-option">
+          <input type="checkbox" class="fieldCheck" id="fieldNotes">
+          <label for="fieldNotes">ملاحظات</label>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-primary" onclick="previewContacts()">
+          <div class="spinner" id="previewSpinner"></div>
+          <i class="fas fa-eye"></i> معاينة الجهات
+        </button>
+        <button class="btn btn-secondary" onclick="downloadTemplate()">
+          <i class="fas fa-download"></i> تحميل النموذج
+        </button>
+      </div>
+
+      <!-- قسم معاينة جهات الاتصال -->
+      <div class="preview-section" id="previewSection">
+        <div class="preview-header">
+          <h3 class="preview-title">معاينة جهات الاتصال</h3>
+          <span class="contacts-count" id="contactsCount">0 جهات</span>
+        </div>
+        
+        <div class="contacts-preview" id="contactsPreview">
+          <!-- سيتم إضافة بطاقات جهات الاتصال هنا عبر الجافاسكريبت -->
+        </div>
+        
+        <div class="preview-actions">
+          <button class="btn btn-primary" onclick="downloadVCF()">
+            <i class="fas fa-file-download"></i> تحميل ملف VCF
+          </button>
+          <button class="btn btn-secondary" onclick="closePreview()">
+            <i class="fas fa-times"></i> إغلاق المعاينة
+          </button>
+        </div>
+      </div>
+
+      <div class="download-link" id="downloadLink">
+        <a href="#" id="vcfDownloadLink">
+          <i class="fas fa-file-download"></i> تحميل ملف جهات الاتصال
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script>
+    // متغيرات عامة
+    let vcfData = "";
+    let contactsData = [];
+    
+    // تحسين تجربة رفع الملفات
+    const fileUploadArea = document.getElementById('fileUploadArea');
+    const excelFileInput = document.getElementById('excelFile');
+    const fileNameDisplay = document.getElementById('fileName');
+
+    fileUploadArea.addEventListener('click', () => excelFileInput.click());
+    
+    excelFileInput.addEventListener('change', function() {
+      if (this.files.length > 0) {
+        fileNameDisplay.textContent = this.files[0].name;
+        fileUploadArea.style.borderColor = '#4361ee';
+        fileUploadArea.style.backgroundColor = 'rgba(67, 97, 238, 0.05)';
+        document.getElementById('previewSection').style.display = 'none';
+      } else {
+        fileNameDisplay.textContent = 'لم يتم اختيار أي ملف';
+        fileUploadArea.style.borderColor = '#ccc';
+        fileUploadArea.style.backgroundColor = '#f8f9fa';
+      }
+    });
+
+    // تحسين تجربة السحب والإفلات
+    fileUploadArea.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      fileUploadArea.style.borderColor = '#4361ee';
+      fileUploadArea.style.backgroundColor = 'rgba(67, 97, 238, 0.1)';
+    });
+
+    fileUploadArea.addEventListener('dragleave', () => {
+      fileUploadArea.style.borderColor = excelFileInput.files.length ? '#4361ee' : '#ccc';
+      fileUploadArea.style.backgroundColor = excelFileInput.files.length ? 'rgba(67, 97, 238, 0.05)' : '#f8f9fa';
+    });
+
+    fileUploadArea.addEventListener('drop', (e) => {
+      e.preventDefault();
+      if (e.dataTransfer.files.length && 
+          (e.dataTransfer.files[0].name.endsWith('.xlsx') || e.dataTransfer.files[0].name.endsWith('.xls'))) {
+        excelFileInput.files = e.dataTransfer.files;
+        fileNameDisplay.textContent = e.dataTransfer.files[0].name;
+        fileUploadArea.style.borderColor = '#4361ee';
+        fileUploadArea.style.backgroundColor = 'rgba(67, 97, 238, 0.05)';
+        document.getElementById('previewSection').style.display = 'none';
+      } else {
+        alert('الرجاء اختيار ملف Excel بصيغة .xlsx أو .xls');
+      }
+    });
+
+    // وظائف التحويل
+    function getFormattedDate() {
+      const now = new Date();
+      return `${now.getFullYear()}-${(now.getMonth()+1).toString().padStart(2,'0')}-${now.getDate()}_${now.getHours()}-${now.getMinutes()}`;
+    }
+
+    function toggleAllFields() {
+      const checks = document.querySelectorAll('.fieldCheck');
+      const allChecked = Array.from(checks).every(cb => cb.checked);
+      checks.forEach(cb => cb.checked = !allChecked);
+    }
+
+    function formatPhoneNumber(phone) {
+      if (!phone) return '';
+      // إزالة أي أحرف غير رقمية
+      return phone.toString().replace(/[^\d]/g, '');
+    }
+
+    function previewContacts() {
+      const file = excelFileInput.files[0];
+      if (!file) {
+        alert("الرجاء اختيار ملف Excel أولاً.");
+        fileUploadArea.style.borderColor = 'var(--warning-color)';
+        setTimeout(() => {
+          fileUploadArea.style.borderColor = excelFileInput.files.length ? '#4361ee' : '#ccc';
+        }, 1000);
+        return;
+      }
+
+      const previewBtn = document.querySelector('.btn-primary');
+      const spinner = document.getElementById('previewSpinner');
+      previewBtn.disabled = true;
+      spinner.style.display = 'block';
+
+      const include = id => document.getElementById(id).checked;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const workbook = XLSX.read(e.target.result, { type: 'array' });
+          const sheet = workbook.Sheets[workbook.SheetNames[0]];
+          const data = XLSX.utils.sheet_to_json(sheet);
+
+          contactsData = [];
+          vcfData = "";
+          let contactsCount = 0;
+
+          data.forEach(row => {
+            const name = row["الاسم"] || "";
+            if (!name) return;
+            
+            const contact = {
+              name: name,
+              phone1: include("fieldPhone1") && row["رقم الهاتف"] ? formatPhoneNumber(row["رقم الهاتف"]) : null,
+              phone2: include("fieldPhone2") && row["رقم هاتف ثاني"] ? formatPhoneNumber(row["رقم هاتف ثاني"]) : null,
+              phone3: include("fieldPhone3") && row["رقم هاتف ثالث"] ? formatPhoneNumber(row["رقم هاتف ثالث"]) : null,
+              email: include("fieldEmail") && row["بريد الكتروني"] ? row["بريد الكتروني"] : null,
+              address: include("fieldAddress") && row["عنوان"] ? row["عنوان"] : null,
+              notes: include("fieldNotes") && row["ملاحظات"] ? row["ملاحظات"] : null
+            };
+
+            contactsData.push(contact);
+            contactsCount++;
+            
+            // إنشاء محتوى VCF
+            let vcard = "BEGIN:VCARD\nVERSION:3.0\n";
+            vcard += `FN:${contact.name}\n`;
+            if (contact.phone1) vcard += `TEL;TYPE=CELL:${contact.phone1}\n`;
+            if (contact.phone2) vcard += `TEL;TYPE=CELL:${contact.phone2}\n`;
+            if (contact.phone3) vcard += `TEL;TYPE=CELL:${contact.phone3}\n`;
+            if (contact.email) vcard += `EMAIL:${contact.email}\n`;
+            if (contact.address) vcard += `ADR:${contact.address}\n`;
+            if (contact.notes) vcard += `NOTE:${contact.notes}\n`;
+            vcard += "END:VCARD\n";
+            vcfData += vcard;
+          });
+
+          if (contactsCount === 0) {
+            alert("لم يتم العثور على أي جهات اتصال في الملف. تأكد من وجود عمود 'الاسم' في ملف Excel.");
+            previewBtn.disabled = false;
+            spinner.style.display = 'none';
+            return;
+          }
+
+          // عرض المعاينة
+          showContactsPreview(contactsData);
+          document.getElementById('contactsCount').textContent = `${contactsCount} جهة اتصال`;
+          
+          previewBtn.disabled = false;
+          spinner.style.display = 'none';
+          
+        } catch (error) {
+          console.error('Error:', error);
+          alert("حدث خطأ أثناء معالجة الملف. تأكد من أن الملف صحيح وغير تالف.");
+          previewBtn.disabled = false;
+          spinner.style.display = 'none';
+        }
+      };
+      reader.readAsArrayBuffer(file);
+    }
+
+    function showContactsPreview(contacts) {
+      const previewContainer = document.getElementById('contactsPreview');
+      previewContainer.innerHTML = '';
+      
+      contacts.forEach(contact => {
+        const contactCard = document.createElement('div');
+        contactCard.className = 'contact-card';
+        
+        let contactHTML = `
+          <div class="contact-name">${contact.name}</div>
+        `;
+        
+        if (contact.phone1) {
+          contactHTML += `
+            <div class="contact-detail">
+              <i class="fas fa-phone"></i>
+              <span>${contact.phone1}</span>
+            </div>
+          `;
+        }
+        
+        if (contact.phone2) {
+          contactHTML += `
+            <div class="contact-detail">
+              <i class="fas fa-phone-alt"></i>
+              <span>${contact.phone2}</span>
+            </div>
+          `;
+        }
+        
+        if (contact.phone3) {
+          contactHTML += `
+            <div class="contact-detail">
+              <i class="fas fa-mobile-alt"></i>
+              <span>${contact.phone3}</span>
+            </div>
+          `;
+        }
+        
+        if (contact.email) {
+          contactHTML += `
+            <div class="contact-detail">
+              <i class="fas fa-envelope"></i>
+              <span>${contact.email}</span>
+            </div>
+          `;
+        }
+        
+        if (contact.address) {
+          contactHTML += `
+            <div class="contact-detail">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>${contact.address}</span>
+            </div>
+          `;
+        }
+        
+        if (contact.notes) {
+          contactHTML += `
+            <div class="contact-detail">
+              <i class="fas fa-sticky-note"></i>
+              <span>${contact.notes}</span>
+            </div>
+          `;
+        }
+        
+        contactCard.innerHTML = contactHTML;
+        previewContainer.appendChild(contactCard);
+      });
+      
+      document.getElementById('previewSection').style.display = 'block';
+      previewContainer.scrollTo(0, 0);
+    }
+
+    function downloadVCF() {
+      if (!vcfData) {
+        alert("لا توجد بيانات لتحميلها. الرجاء معاينة الجهات أولاً.");
+        return;
+      }
+      
+      const blob = new Blob([vcfData], { type: 'text/vcard' });
+      const url = URL.createObjectURL(blob);
+      const filename = `جهات_الاتصال_${getFormattedDate()}.vcf`;
+      
+      const downloadLink = document.getElementById('vcfDownloadLink');
+      downloadLink.href = url;
+      downloadLink.download = filename;
+      
+      document.getElementById('downloadLink').style.display = 'block';
+      downloadLink.click();
+    }
+
+    function closePreview() {
+      document.getElementById('previewSection').style.display = 'none';
+    }
+
+    function downloadTemplate() {
+      const ws = XLSX.utils.aoa_to_sheet([
+        ["الاسم", "رقم الهاتف", "رقم هاتف ثاني", "رقم هاتف ثالث", "بريد الكتروني", "عنوان", "ملاحظات"],
+        ["مثال: أحمد محمد", "966501234567", "966501234568", "", "example@email.com", "الرياض، السعودية", "زميل عمل"]
+      ]);
+      
+      // تعيين عرض الأعمدة
+      ws['!cols'] = [
+        { wch: 20 }, { wch: 15 }, { wch: 15 }, 
+        { wch: 15 }, { wch: 25 }, { wch: 30 }, { wch: 40 }
+      ];
+      
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, "جهات الاتصال");
+      XLSX.writeFile(wb, "نموذج_جهات_الاتصال.xlsx");
+    }
+  </script>
+</body>
+</html>
