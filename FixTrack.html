@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحميل برنامج FixTrack</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* تنسيق البانر العلوي */
+        .top-banner {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .top-banner h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .top-banner p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* تنسيق قسم المحتوى */
+        .content {
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .password-section {
+            background-color: white;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .password-section h2 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
+        
+        .password-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            transition: border-color 0.3s;
+        }
+        
+        .password-input:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(to right, #3498db, #2c3e50);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* تنسيق قسم التحميل المخفي */
+        .download-section {
+            display: none;
+            margin-top: 30px;
+            padding: 25px;
+            background-color: #e8f4fc;
+            border-radius: 8px;
+            border-left: 5px solid #3498db;
+        }
+        
+        .download-btn {
+            background: linear-gradient(to right, #2ecc71, #27ae60);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 15px;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* تنسيق رسالة الخطأ */
+        .error-message {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #ffeaea;
+            color: #e74c3c;
+            border-radius: 8px;
+            border-left: 5px solid #e74c3c;
+        }
+        
+        /* تنسيق البانر السفلي */
+        .bottom-banner {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+            border-radius: 15px 15px 0 0;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .phone-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+        
+        .developer-contact {
+            margin-top: 20px;
+            font-size: 1rem;
+        }
+        
+        /* تنسيق متجاوب للهواتف */
+        @media (max-width: 768px) {
+            .top-banner h1 {
+                font-size: 2rem;
+            }
+            
+            .top-banner p {
+                font-size: 1rem;
+            }
+            
+            .password-section {
+                padding: 30px 20px;
+            }
+            
+            .phone-number {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- البانر العلوي -->
+    <header class="top-banner">
+        <div class="container">
+            <h1>هنا يمكنك تحميل برنامج FixTrack</h1>
+            <p>نتمنى لك تجربة رائعة</p>
+        </div>
+    </header>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="content">
+        <div class="container">
+            <div class="password-section">
+                <h2>التحقق للوصول إلى رابط التحميل</h2>
+                <p>قم بادخال كلمة المرور التي حصلت عليها من الدعم الفني بعد تأكيد الشراء</p>
+                
+                <input type="password" class="password-input" id="passwordInput" placeholder="أدخل كلمة المرور هنا">
+                <button class="submit-btn" id="submitBtn">تحقق</button>
+                
+                <!-- رسالة الخطأ -->
+                <div class="error-message" id="errorMessage">
+                    <p>كلمة المرور غير صحيحة. يرجى المحاولة مرة أخرى أو الاتصال بالمطور على الرقم: <strong>01205557825</strong></p>
+                </div>
+                
+                <!-- قسم التحميل المخفي -->
+                <div class="download-section" id="downloadSection">
+                    <h3>تم التحقق بنجاح!</h3>
+                    <p>يمكنك الآن تحميل البرنامج والكتب المطلوبة</p>
+                    <a href="#" class="download-btn" id="downloadLink">تحميل الآن</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- البانر السفلي -->
+    <footer class="bottom-banner">
+        <div class="container">
+            <div class="contact-info">
+                
+                <div class="phone-number">01205557825</div>
+                
+            </div>
+            <div class="developer-contact">
+                <p>للاستفسارات التقنية، يرجى الاتصال بالمطور على الرقم: 01205557825</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const passwordInput = document.getElementById('passwordInput');
+            const submitBtn = document.getElementById('submitBtn');
+            const errorMessage = document.getElementById('errorMessage');
+            const downloadSection = document.getElementById('downloadSection');
+            const downloadLink = document.getElementById('downloadLink');
+            
+            // كلمة المرور الصحيحة
+            const correctPassword = '712';
+            
+            // إضافة رابط التحميل الحقيقي هنا
+            downloadLink.href = 'https://www.dropbox.com/scl/fi/2xhytfe73vo8tkaylujtm/FixTrack-Setup.exe?rlkey=046sfikdflbyu1aco57z7y2le&st=j7hzgh0m&dl=1'; // استبدل # برابط التحميل الفعلي
+            
+            submitBtn.addEventListener('click', function() {
+                const enteredPassword = passwordInput.value;
+                
+                if (enteredPassword === correctPassword) {
+                    // إذا كانت كلمة المرور صحيحة
+                    downloadSection.style.display = 'block';
+                    errorMessage.style.display = 'none';
+                } else {
+                    // إذا كانت كلمة المرور خاطئة
+                    errorMessage.style.display = 'block';
+                    downloadSection.style.display = 'none';
+                }
+            });
+            
+            // السماح بالضغط على Enter لإدخال كلمة المرور
+            passwordInput.addEventListener('keyup', function(event) {
+                if (event.key === 'Enter') {
+                    submitBtn.click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
