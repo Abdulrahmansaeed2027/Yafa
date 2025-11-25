@@ -13,8 +13,8 @@
         }
         
         body {
-            background-color: #f5f7fa;
-            color: #333;
+            background-color: #f8fafc;
+            color: #2d3748;
             line-height: 1.6;
         }
         
@@ -26,7 +26,7 @@
         
         /* تنسيق البانر العلوي */
         .top-banner {
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             text-align: center;
             padding: 40px 20px;
@@ -45,9 +45,117 @@
             margin: 0 auto;
         }
         
+        /* قسم فيديو اليوتيوب */
+        .video-section {
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .video-container {
+            max-width: 800px;
+            margin: 0 auto 30px;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* نسبة 16:9 */
+            height: 0;
+            margin-bottom: 20px;
+        }
+        
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            border: none;
+        }
+        
+        .subscribe-btn {
+            background: linear-gradient(to right, #48bb78, #38a169);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(72, 187, 120, 0.2);
+        }
+        
+        .subscribe-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(72, 187, 120, 0.3);
+            background: linear-gradient(to right, #38a169, #2f855a);
+        }
+        
+        /* مربع الحوار */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            backdrop-filter: blur(3px);
+        }
+        
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            border: 2px solid #e2e8f0;
+        }
+        
+        .modal-content h3 {
+            color: #2d3748;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .modal-content p {
+            color: #4a5568;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+        
+        .modal-close {
+            background: linear-gradient(to right, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-close:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+        }
+        
         /* تنسيق قسم المحتوى */
         .content {
-            padding: 60px 0;
+            padding: 40px 0;
             text-align: center;
         }
         
@@ -58,10 +166,11 @@
             padding: 40px;
             border-radius: 12px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
         }
         
         .password-section h2 {
-            color: #2c3e50;
+            color: #2d3748;
             margin-bottom: 25px;
             font-size: 1.8rem;
         }
@@ -69,33 +178,35 @@
         .password-input {
             width: 100%;
             padding: 15px;
-            border: 2px solid #e1e8ed;
+            border: 2px solid #e2e8f0;
             border-radius: 8px;
             font-size: 1.1rem;
             margin-bottom: 20px;
             transition: border-color 0.3s;
+            background-color: #f8fafc;
         }
         
         .password-input:focus {
-            border-color: #3498db;
+            border-color: #667eea;
             outline: none;
+            background-color: white;
         }
         
         .submit-btn {
-            background: linear-gradient(to right, #3498db, #2c3e50);
+            background: linear-gradient(to right, #667eea, #764ba2);
             color: white;
             border: none;
             padding: 15px 30px;
             font-size: 1.1rem;
             border-radius: 8px;
             cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.3s ease;
             width: 100%;
         }
         
         .submit-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
         }
         
         /* تنسيق قسم التحميل المخفي */
@@ -103,20 +214,20 @@
             display: none;
             margin-top: 30px;
             padding: 25px;
-            background-color: #e8f4fc;
+            background-color: #f0fff4;
             border-radius: 8px;
-            border-left: 5px solid #3498db;
+            border-right: 5px solid #48bb78;
         }
         
         .download-btn {
-            background: linear-gradient(to right, #2ecc71, #27ae60);
+            background: linear-gradient(to right, #48bb78, #38a169);
             color: white;
             border: none;
             padding: 15px 30px;
             font-size: 1.1rem;
             border-radius: 8px;
             cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
             margin-top: 15px;
@@ -124,7 +235,7 @@
         
         .download-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(72, 187, 120, 0.3);
         }
         
         /* تنسيق رسالة الخطأ */
@@ -132,15 +243,15 @@
             display: none;
             margin-top: 20px;
             padding: 15px;
-            background-color: #ffeaea;
-            color: #e74c3c;
+            background-color: #fed7d7;
+            color: #c53030;
             border-radius: 8px;
-            border-left: 5px solid #e74c3c;
+            border-right: 5px solid #c53030;
         }
         
         /* تنسيق البانر السفلي */
         .bottom-banner {
-            background-color: #2c3e50;
+            background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
             color: white;
             text-align: center;
             padding: 40px 20px;
@@ -162,11 +273,13 @@
             background-color: rgba(255, 255, 255, 0.1);
             padding: 10px 20px;
             border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
         .developer-contact {
             margin-top: 20px;
             font-size: 1rem;
+            color: #e2e8f0;
         }
         
         /* تنسيق متجاوب للهواتف */
@@ -186,6 +299,14 @@
             .phone-number {
                 font-size: 1.2rem;
             }
+            
+            .modal-content {
+                padding: 30px 20px;
+            }
+            
+            .video-container {
+                padding: 15px;
+            }
         }
     </style>
 </head>
@@ -194,9 +315,34 @@
     <header class="top-banner">
         <div class="container">
             <h1>هنا يمكنك تحميل برنامج FixTrack</h1>
-            <p>نتمنى لك تجربة رائعة</p>
+            <p>شاهد الفيديو التعريفي ثم اشترك لتحميل البرنامج</p>
         </div>
     </header>
+
+    <!-- قسم فيديو اليوتيوب -->
+    <section class="video-section">
+        <div class="container">
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <!-- ضع رابط فيديو اليوتيوب هنا -->
+                    <iframe src="https://www.youtube.com/embed/VIDEO_ID" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                    </iframe>
+                </div>
+                <button class="subscribe-btn" id="subscribeBtn">اشترك الآن</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- مربع الحوار -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <h3>للشراء والتحديث</h3>
+            <p>للشراء تواصل مع الدعم الفني على رقم<br><strong>01205557825</strong><br>لأخذ باسورد تحميل البرنامج والدفع</p>
+            <button class="modal-close" id="modalClose">موافق</button>
+        </div>
+    </div>
 
     <!-- المحتوى الرئيسي -->
     <main class="content">
@@ -227,9 +373,7 @@
     <footer class="bottom-banner">
         <div class="container">
             <div class="contact-info">
-                
                 <div class="phone-number">01205557825</div>
-                
             </div>
             <div class="developer-contact">
                 <p>للاستفسارات التقنية، يرجى الاتصال بالمطور على الرقم: 01205557825</p>
@@ -239,6 +383,12 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // عناصر فيديو اليوتيوب والاشتراك
+            const subscribeBtn = document.getElementById('subscribeBtn');
+            const modalOverlay = document.getElementById('modalOverlay');
+            const modalClose = document.getElementById('modalClose');
+            
+            // عناصر نظام كلمة المرور
             const passwordInput = document.getElementById('passwordInput');
             const submitBtn = document.getElementById('submitBtn');
             const errorMessage = document.getElementById('errorMessage');
@@ -249,8 +399,26 @@
             const correctPassword = 'A712';
             
             // إضافة رابط التحميل الحقيقي هنا
-            downloadLink.href = 'https://www.dropbox.com/scl/fi/uuik2tlqjrje6fu18spr5/FixTrack-1-1.rar?rlkey=ifbruec2hrjmzg0zr39ocy257&st=a63qyx2d&dl=1'; // استبدل # برابط التحميل الفعلي
+            downloadLink.href = 'https://www.dropbox.com/scl/fi/uuik2tlqjrje6fu18spr5/FixTrack-1-1.rar?rlkey=ifbruec2hrjmzg0zr39ocy257&st=a63qyx2d&dl=1';
             
+            // فتح مربع الحوار عند الضغط على اشترك الآن
+            subscribeBtn.addEventListener('click', function() {
+                modalOverlay.style.display = 'block';
+            });
+            
+            // إغلاق مربع الحوار
+            modalClose.addEventListener('click', function() {
+                modalOverlay.style.display = 'none';
+            });
+            
+            // إغلاق مربع الحوار عند الضغط خارج المحتوى
+            modalOverlay.addEventListener('click', function(e) {
+                if (e.target === modalOverlay) {
+                    modalOverlay.style.display = 'none';
+                }
+            });
+            
+            // التحقق من كلمة المرور
             submitBtn.addEventListener('click', function() {
                 const enteredPassword = passwordInput.value;
                 
